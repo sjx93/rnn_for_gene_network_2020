@@ -1,0 +1,2 @@
+model_checkpoint_path: "gap-network-3999"
+all_model_checkpoint_paths: "gap-network-3999"
