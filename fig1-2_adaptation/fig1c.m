@@ -1,0 +1,71 @@
+run_num = 1;
+pdir = [num2str(run_num),'\paras\'];
+
+W1 = csvread([pdir,'W1.csv']);
+b1 = csvread([pdir,'b1.csv']);
+W2 = csvread([pdir,'W2.csv']);
+b2 = csvread([pdir,'b2.csv']);
+W3 = csvread([pdir,'W3.csv']);
+b3 = csvread([pdir,'b3.csv']);
+hidden_init = csvread([pdir,' hidden_init.csv']);
+
+N_grid = 100;
+
+subplot(1,3,1);
+inputs = linspace(0,1,N_grid)';
+h0 = [inputs,0.5*ones(N_grid,1),0.5*ones(N_grid,1)];
+a1 = h0*W1 + ones(N_grid,1)*b1';
+h1 = max(a1,0);
+a2 = h1*W2 + ones(N_grid,1)*b2';
+h2 = max(a2,0);
+a3 = h2*W3 + ones(N_grid,1)*b3';
+h3 = 1./(1+exp(-a3));
+f1 = h3(:,1);
+f2 = h3(:,2);
+plot(inputs, f1,':','linewidth',3,'color',[0,0,0.9]); hold on;
+plot(inputs, f2,':','linewidth',3,'color',[0,0.65,0]); hold off;
+xlim([0,1]); ylim([0,1]); grid on;
+set(gca,'xtick',[0,0.5,1]);
+set(gca,'xticklabel',[]);
+set(gca,'ytick',[0,0.5,1]);
+set(gca,'yticklabel',[]);
+
+subplot(1,3,2);
+g1 = linspace(0,1,N_grid)';
+h0 = [0.5*ones(N_grid,1),g1,0.5*ones(N_grid,1)];
+a1 = h0*W1 + ones(N_grid,1)*b1';
+h1 = max(a1,0);
+a2 = h1*W2 + ones(N_grid,1)*b2';
+h2 = max(a2,0);
+a3 = h2*W3 + ones(N_grid,1)*b3';
+h3 = 1./(1+exp(-a3));
+f1 = h3(:,1);
+f2 = h3(:,2);
+plot(inputs, f1,':','linewidth',3,'color',[0,0,0.9]); hold on;
+plot(inputs, f2,':','linewidth',3,'color',[0,0.65,0]); hold off;
+xlim([0,1]); ylim([0,1]); grid on;
+set(gca,'xtick',[0,0.5,1]);
+set(gca,'xticklabel',[]);
+set(gca,'ytick',[0,0.5,1]);
+set(gca,'yticklabel',[]);
+
+subplot(1,3,3);
+g2 = linspace(0,1,N_grid)';
+h0 = [0.5*ones(N_grid,1),0.5*ones(N_grid,1),g2];
+a1 = h0*W1 + ones(N_grid,1)*b1';
+h1 = max(a1,0);
+a2 = h1*W2 + ones(N_grid,1)*b2';
+h2 = max(a2,0);
+a3 = h2*W3 + ones(N_grid,1)*b3';
+h3 = 1./(1+exp(-a3));
+f1 = h3(:,1);
+f2 = h3(:,2);
+plot(inputs, f1,':','linewidth',3,'color',[0,0,0.9]); hold on;
+plot(inputs, f2,':','linewidth',3,'color',[0,0.65,0]); hold off;
+xlim([0,1]); ylim([0,1]); grid on;
+set(gca,'xtick',[0,0.5,1]);
+set(gca,'xticklabel',[]);
+set(gca,'ytick',[0,0.5,1]);
+set(gca,'yticklabel',[]);
+
+set(gcf,'unit','centimeters','position',[1,2,10,3]);
