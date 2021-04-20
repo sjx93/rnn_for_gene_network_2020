@@ -1,0 +1,4 @@
+model_checkpoint_path: "CA-network-11999"
+all_model_checkpoint_paths: "CA-network-3999"
+all_model_checkpoint_paths: "CA-network-7999"
+all_model_checkpoint_paths: "CA-network-11999"
